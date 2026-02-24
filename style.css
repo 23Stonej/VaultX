@@ -6,18 +6,12 @@
 }
 
 body {
-  background: #050510;
+  background: radial-gradient(circle at 20% 20%, #0f172a, #020617 70%);
   color: white;
-  overflow-x: hidden;
 }
 
 .background {
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, #0f0f2a 0%, #000 70%);
-  animation: rotateBG 60s linear infinite;
-  z-index: -1;
+  display: none;
 }
 
 @keyframes rotateBG {

@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #050510;
+  color: white;
+  overflow-x: hidden;
+}
+
+.background {
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, #0f0f2a 0%, #000 70%);
+  animation: rotateBG 60s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rotateBG {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 60px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: gold;
+  text-shadow: 0 0 15px gold;
+}
+
+.hero {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, white, gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  opacity: 0.7;
+  margin-bottom: 40px;
+}
+
+.btn {
+  background: black;
+  border: 2px solid gold;
+  color: gold;
+  padding: 12px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.4s;
+  box-shadow: 0 0 15px gold;
+}
+
+.btn:hover {
+  background: gold;
+  color: black;
+  box-shadow: 0 0 40px gold;
+}
+
+.large {
+  font-size: 18px;
+}
+
+.dashboard {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.card {
+  width: 350px;
+  height: 200px;
+  margin: 0 auto 40px;
+  background: black;
+  border-radius: 20px;
+  border: 2px solid gold;
+  box-shadow: 0 0 30px gold;
+  padding: 30px;
+  position: relative;
+}
+
+.card-number {
+  margin-top: 40px;
+  letter-spacing: 4px;
+}
+
+.card-name {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.card-brand {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-weight: bold;
+  color: gold;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.stat {
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}

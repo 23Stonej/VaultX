@@ -3,10 +3,6 @@
 <head>
   <title>VaultX</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Firebase compat SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
@@ -20,7 +16,16 @@
   <button onclick="login()">Login</button>
 </div>
 
+<!-- 🔹 Firebase scripts (order matters) -->
+<script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-firestore-compat.js"></script>
+
+<!-- 🔹 Firebase config -->
 <script src="firebaseConfig.js"></script>
+
+<!-- 🔹 Custom scripts -->
 <script src="script.js"></script>
+
 </body>
 </html>

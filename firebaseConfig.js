@@ -1,4 +1,4 @@
-// 🔹 Firebase configuration for VaultX
+// 🔹 Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD03N3_jRsw0l4a56WH6F75Zj0_zHipkIo",
   authDomain: "vaultx-43488.firebaseapp.com",
@@ -9,14 +9,14 @@ const firebaseConfig = {
   measurementId: "G-4WSJNZSQJ8"
 };
 
-// 🔹 Initialize Firebase (compat version for plain HTML)
+// 🔹 Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// 🔹 Make auth and db available globally
+// 🔹 Make auth and db global
 var auth = firebase.auth();
 var db = firebase.firestore();
 
-// 🔹 Optional: Enable offline persistence for Firestore
+// 🔹 Optional: Enable offline persistence
 db.enablePersistence()
   .catch(function(err) {
     if (err.code === 'failed-precondition') {

@@ -1,25 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VaultX</title>
-<link rel="stylesheet" href="style.css">
+  <title>VaultX</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<canvas id="stars"></canvas><body>
+<body>
 
-<div class="background"></div>
+<div class="container">
+  <h1>VaultX</h1>
 
-<header>
-  <div class="logo">VAULT<span>X</span></div>
-  <button class="btn" onclick="enterDashboard()">Enter</button>
-</header>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
 
-<section class="hero">
-  <h1>The Future of Financial Infrastructure</h1>
-  <p>Precision. Power. Control.</p>
-  <button class="btn large" onclick="enterDashboard()">Launch Dashboard</button>
-</section>
+  <button onclick="handleSignup()">Sign Up</button>
+  <button onclick="handleLogin()">Login</button>
+</div>
 
 <script src="script.js"></script>
 </body>

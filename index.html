@@ -3,6 +3,10 @@
 <head>
   <title>VaultX</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Firebase compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
@@ -12,10 +16,11 @@
   <input type="email" id="email" placeholder="Email">
   <input type="password" id="password" placeholder="Password">
 
-  <button onclick="handleSignup()">Sign Up</button>
-  <button onclick="handleLogin()">Login</button>
+  <button onclick="signup()">Sign Up</button>
+  <button onclick="login()">Login</button>
 </div>
 
+<script src="firebaseConfig.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -1,4 +1,7 @@
-async function signup(email, password) {
+async function handleSignup() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
   const res = await fetch("/.netlify/functions/signup", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -9,7 +12,10 @@ async function signup(email, password) {
   alert(data.message || data.error);
 }
 
-async function login(email, password) {
+async function handleLogin() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
   const res = await fetch("/.netlify/functions/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

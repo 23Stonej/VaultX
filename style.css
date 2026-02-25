@@ -1,7 +1,7 @@
 body {
   background: black;
   color: white;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,10 +20,21 @@ input {
   margin: 10px auto;
   padding: 10px;
   width: 250px;
+  border-radius: 6px;
+  border: none;
 }
 
 button {
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: #00f0ff;
+  font-weight: bold;
+  color: black;
+}
+
+button:hover {
+  opacity: 0.8;
 }

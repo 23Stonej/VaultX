@@ -1,4 +1,3 @@
-
 async function signup() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -7,7 +6,7 @@ async function signup() {
     const userCredential = await auth.createUserWithEmailAndPassword(email, password);
     const user = userCredential.user;
 
-    // Create user document in Firestore
+    // Create Firestore document
     await db.collection("users").doc(user.uid).set({
       email: email,
       balance: 0,

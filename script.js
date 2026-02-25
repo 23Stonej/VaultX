@@ -1,32 +1,34 @@
-async function handleSignup() {
+async function signup() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("/.netlify/functions/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
-  });
+  try {
+    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+    const user = userCredential.user;
 
-  const data = await res.json();
-  alert(data.message || data.error);
+    // Create Firestore document
+    await db.collection("users").doc(user.uid).set({
+      email: email,
+      balance: 0,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    alert("Signup successful!");
+    window.location.href = "dashboard.html";
+  } catch (err) {
+    alert(err.message);
+  }
 }
 
-async function handleLogin() {
+async function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("/.netlify/functions/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
-  });
-
-  const data = await res.json();
-
-  if (res.status === 200) {
+  try {
+    const userCredential = await auth.signInWithEmailAndPassword(email, password);
+    alert("Login successful!");
     window.location.href = "dashboard.html";
-  } else {
-    alert(data.error);
+  } catch (err) {
+    alert(err.message);
   }
 }

@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
+  <title>VaultX Dashboard</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Firebase compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
 <div class="container">
-  <h1>Welcome to VaultX Dashboard</h1>
-  <p>You are logged in.</p>
+  <h1>VaultX Dashboard</h1>
+  <p id="email"></p>
+  <p>Balance: $<span id="balance"></span></p>
+  <button onclick="logout()">Logout</button>
 </div>
 
+<script src="firebaseConfig.js"></script>
+<script src="dashboard.js"></script>
 </body>
 </html>

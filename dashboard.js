@@ -14,7 +14,7 @@ auth.onAuthStateChanged(async user => {
   }
 });
 
-// Logout
+// Logout function
 function logout() {
   auth.signOut();
   window.location.href = "index.html";

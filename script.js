@@ -1,34 +1,19 @@
-async function signup() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  try {
-    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-    const user = userCredential.user;
-
-    // Create Firestore document
-    await db.collection("users").doc(user.uid).set({
-      email: email,
-      balance: 0,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-
-    alert("Signup successful!");
-    window.location.href = "dashboard.html";
-  } catch (err) {
-    alert(err.message);
+// Show user info + balance
+auth.onAuthStateChanged(async user => {
+  if (user) {
+    document.getElementById("email").innerText = `Email: ${user.email}`;
+    const doc = await db.collection("users").doc(user.uid).get();
+    if (doc.exists) {
+      document.getElementById("balance").innerText = doc.data().balance;
+    } else {
+      document.getElementById("balance").innerText = 0;
+    }
+  } else {
+    window.location.href = "index.html";
   }
-}
+});
 
-async function login() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  try {
-    const userCredential = await auth.signInWithEmailAndPassword(email, password);
-    alert("Login successful!");
-    window.location.href = "dashboard.html";
-  } catch (err) {
-    alert(err.message);
-  }
+function logout() {
+  auth.signOut();
+  window.location.href = "index.html";
 }

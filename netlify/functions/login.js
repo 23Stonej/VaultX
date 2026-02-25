@@ -1,28 +1,22 @@
-let users = [];
-
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: "Method Not Allowed"
+      body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
 
   const { email, password } = JSON.parse(event.body);
 
-  const user = users.find(
-    user => user.email === email && user.password === password
-  );
-
-  if (!user) {
+  if (!email || !password) {
     return {
-      statusCode: 401,
-      body: JSON.stringify({ error: "Invalid credentials" })
+      statusCode: 400,
+      body: JSON.stringify({ error: "Email and password required" }),
     };
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: "Login successful" })
+    body: JSON.stringify({ message: "Login successful" }),
   };
 };

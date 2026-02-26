@@ -3,20 +3,18 @@ async function signup() {
   const password = document.getElementById("password").value;
 
   try {
-    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+    const userCredential = await window.auth.createUserWithEmailAndPassword(email, password);
     const user = userCredential.user;
 
-    // Create Firestore document
-    await db.collection("users").doc(user.uid).set({
+    await window.db.collection("users").doc(user.uid).set({
       email: email,
-      balance: 0,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      balance: 0
     });
 
     alert("Signup successful!");
     window.location.href = "dashboard.html";
-  } catch (err) {
-    alert(err.message);
+  } catch (error) {
+    alert(error.message);
   }
 }
 
@@ -25,10 +23,9 @@ async function login() {
   const password = document.getElementById("password").value;
 
   try {
-    await auth.signInWithEmailAndPassword(email, password);
-    alert("Login successful!");
+    await window.auth.signInWithEmailAndPassword(email, password);
     window.location.href = "dashboard.html";
-  } catch (err) {
-    alert(err.message);
+  } catch (error) {
+    alert(error.message);
   }
 }

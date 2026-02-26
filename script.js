@@ -1,4 +1,4 @@
-// 🔥 Firebase Config
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyD03N3_jRsw0l4a56WH6F75Zj0_zHipkIo",
   authDomain: "vaultx-43488.firebaseapp.com",
@@ -9,16 +9,16 @@ const firebaseConfig = {
   measurementId: "G-4WSJNZSQJ8"
 };
 
-// Initialize Firebase (only once)
+// Initialize Firebase once
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const auth = firebase.auth();
-const db = firebase.firestore();
-
 // SIGN UP
 async function signup() {
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
@@ -31,9 +31,7 @@ async function signup() {
       balance: 0
     });
 
-    alert("Signup successful!");
     window.location.href = "dashboard.html";
-
   } catch (error) {
     alert(error.message);
   }
@@ -41,13 +39,14 @@ async function signup() {
 
 // LOGIN
 async function login() {
+  const auth = firebase.auth();
+
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
   try {
     await auth.signInWithEmailAndPassword(email, password);
     window.location.href = "dashboard.html";
-
   } catch (error) {
     alert(error.message);
   }

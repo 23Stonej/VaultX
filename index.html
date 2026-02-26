@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VaultX</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
   <!-- Firebase -->
@@ -16,27 +18,30 @@
 </head>
 <body>
   <div class="container">
-    <h1>VaultX</h1>
 
     <!-- Login Section -->
-    <div id="loginSection">
+    <div id="loginSection" class="section">
+      <h1>VaultX</h1>
       <input type="email" id="email" placeholder="Email">
       <input type="password" id="password" placeholder="Password">
       <button id="loginBtn">Log In</button>
     </div>
 
     <!-- Dashboard Section -->
-    <div id="dashboardSection" style="display:none;">
-      <p id="welcomeMsg">Welcome!</p>
-      <p id="balanceDisplay">Balance: $0</p>
+    <div id="dashboardSection" class="section" style="display:none;">
+      <div class="card">
+        <p id="cardBalance">$0</p>
+        <p id="cardEmail">Email</p>
+      </div>
 
       <input type="number" id="depositAmount" placeholder="Deposit USD">
       <button id="depositBtn">Deposit with Stripe</button>
-
-      <button id="logoutBtn">Log Out</button>
+      <button id="logoutBtn" class="logoutBtn">Log Out</button>
     </div>
+
   </div>
 
+  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>

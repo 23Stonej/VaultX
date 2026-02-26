@@ -1,77 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VaultX</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
+  <div class="container">
+    <h1>VaultX</h1>
 
-<div class="container">
-  <h1>VaultX</h1>
+    <!-- Login Section -->
+    <div id="loginSection">
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Password">
+      <button id="loginBtn">Log In</button>
+    </div>
 
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
+    <!-- Dashboard Section -->
+    <div id="dashboardSection" style="display:none;">
+      <p id="welcomeMsg">Welcome!</p>
+      <p id="balanceDisplay">Balance: $0</p>
 
-  <button id="signupBtn">Sign Up</button>
-  <button id="loginBtn">Login</button>
-</div>
+      <input type="number" id="depositAmount" placeholder="Deposit USD">
+      <button id="depositBtn">Deposit with Stripe</button>
 
-<!-- ✅ WORKING FIREBASE VERSION -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+      <button id="logoutBtn">Log Out</button>
+    </div>
+  </div>
 
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyD03N3_jRsw0l4a56WH6F75Zj0_zHipkIo",
-  authDomain: "vaultx-43488.firebaseapp.com",
-  projectId: "vaultx-43488",
-  storageBucket: "vaultx-43488.appspot.com",
-  messagingSenderId: "103145535155",
-  appId: "1:103145535155:web:7afce57dac2c968c2122c6"
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-document.getElementById("signupBtn").addEventListener("click", async function() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  try {
-    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-    const user = userCredential.user;
-
-    await db.collection("users").doc(user.uid).set({
-      email: email,
-      balance: 0
-    });
-
-    window.location.href = "dashboard.html";
-  } catch (error) {
-    alert(error.message);
-  }
-});
-
-document.getElementById("loginBtn").addEventListener("click", async function() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  try {
-    await auth.signInWithEmailAndPassword(email, password);
-    window.location.href = "dashboard.html";
-  } catch (error) {
-    alert(error.message);
-  }
-});
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-<script src="script.js"></script>

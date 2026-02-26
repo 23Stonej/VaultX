@@ -14,7 +14,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // Stripe publishable key
-const stripe = Stripe("PASTE_YOUR_STRIPE_PUBLISHABLE_KEY");
+const stripe = Stripe("pk_test_51T3k3g7fijcsyllCGQ0oZpTjraFmKqGSj9dtUJ3tCmi7cV2tRV9TCPreCppKTBYlG6WzXwW2x4H4mi070vXPX7lo00Pv0EV27H");
 
 // DOM Elements
 const loginSection = document.getElementById("loginSection");

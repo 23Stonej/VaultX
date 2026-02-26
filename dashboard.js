@@ -1,4 +1,4 @@
-// 🔥 Firebase Config
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyD03N3_jRsw0l4a56WH6F75Zj0_zHipkIo",
   authDomain: "vaultx-43488.firebaseapp.com",
@@ -9,6 +9,7 @@ const firebaseConfig = {
   measurementId: "G-4WSJNZSQJ8"
 };
 
+// Initialize Firebase once
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }

@@ -6,16 +6,15 @@ projectId: "vaultx-43488",
 storageBucket: "vaultx-43488.firebasestorage.app",
 messagingSenderId: "103145535155",
 appId: "1:103145535155:web:7afce57dac2c968c2122c6",
-measurementId: "G-4WSJNZSQJ8""
+measurementId: "G-4WSJNZSQJ8"
 };
 
 firebase.initializeApp(firebaseConfig);
-
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Stripe
-const stripe = Stripe("PASTE_YOUR_PUBLISHABLE_KEY"); // front-end only
+// Stripe publishable key
+const stripe = Stripe("PASTE_YOUR_STRIPE_PUBLISHABLE_KEY");
 
 // DOM Elements
 const loginSection = document.getElementById("loginSection");
@@ -24,18 +23,17 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");
 const logoutBtn = document.getElementById("logoutBtn");
-const welcomeMsg = document.getElementById("welcomeMsg");
-const balanceDisplay = document.getElementById("balanceDisplay");
+const cardBalance = document.getElementById("cardBalance");
+const cardEmail = document.getElementById("cardEmail");
 const depositAmount = document.getElementById("depositAmount");
 const depositBtn = document.getElementById("depositBtn");
 
-// Login Button
+// Login
 loginBtn.addEventListener("click", async () => {
   try {
     const userCred = await auth.signInWithEmailAndPassword(emailInput.value, passwordInput.value);
     const user = userCred.user;
 
-    // Check if user exists in Firestore
     const userDoc = await db.collection("users").doc(user.uid).get();
     if (!userDoc.exists) {
       await db.collection("users").doc(user.uid).set({
@@ -50,25 +48,26 @@ loginBtn.addEventListener("click", async () => {
   }
 });
 
-// Logout Button
+// Logout
 logoutBtn.addEventListener("click", () => {
   auth.signOut();
   loginSection.style.display = "block";
   dashboardSection.style.display = "none";
 });
 
-// Show Dashboard
+// Show dashboard
 async function showDashboard(uid) {
   loginSection.style.display = "none";
   dashboardSection.style.display = "block";
 
   const doc = await db.collection("users").doc(uid).get();
   const data = doc.data();
-  welcomeMsg.innerText = `Welcome, ${data.email}`;
-  balanceDisplay.innerText = `Balance: $${data.balance}`;
+
+  cardBalance.innerText = `$${data.balance}`;
+  cardEmail.innerText = data.email;
 }
 
-// Deposit Button (Stripe Checkout Simulation)
+// Deposit with Stripe Checkout Simulation
 depositBtn.addEventListener("click", async () => {
   const amount = parseFloat(depositAmount.value);
   if (!amount || amount <= 0) return alert("Enter valid amount");
@@ -76,13 +75,16 @@ depositBtn.addEventListener("click", async () => {
   const user = auth.currentUser;
   if (!user) return alert("Not logged in");
 
-  // For now: directly increment balance in Firestore (simulate Stripe)
+  // 🔹 Simple Stripe Checkout redirect simulation
+  // You can replace this with real Stripe Checkout later
+  alert(`This would open Stripe Checkout for $${amount}`);
+
+  // Update balance in Firestore
   await db.collection("users").doc(user.uid).update({
     balance: firebase.firestore.FieldValue.increment(amount)
   });
 
   const doc = await db.collection("users").doc(user.uid).get();
-  balanceDisplay.innerText = `Balance: $${doc.data().balance}`;
+  cardBalance.innerText = `$${doc.data().balance}`;
   depositAmount.value = "";
-  alert(`$${amount} added!`);
 });

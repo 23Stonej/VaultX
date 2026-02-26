@@ -1,4 +1,4 @@
-// 🔥 REPLACE THIS CONFIG WITH YOUR FIREBASE PROJECT
+// 🔥 Replace with your Firebase config
 const firebaseConfig = {
 apiKey: "AIzaSyD03N3_jRsw0l4a56WH6F75Zj0_zHipkIo",
 authDomain: "[vaultx-43488.firebaseapp.com](http://vaultx-43488.firebaseapp.com/)",
@@ -67,7 +67,7 @@ async function showDashboard(uid) {
   cardEmail.innerText = data.email;
 }
 
-// Deposit with Stripe Checkout Simulation
+// Deposit with Stripe Checkout
 depositBtn.addEventListener("click", async () => {
   const amount = parseFloat(depositAmount.value);
   if (!amount || amount <= 0) return alert("Enter valid amount");
@@ -75,11 +75,11 @@ depositBtn.addEventListener("click", async () => {
   const user = auth.currentUser;
   if (!user) return alert("Not logged in");
 
-  // 🔹 Simple Stripe Checkout redirect simulation
-  // You can replace this with real Stripe Checkout later
-  alert(`This would open Stripe Checkout for $${amount}`);
+  // Simple Stripe Checkout (test mode)
+  // For real integration, create a Checkout session on your backend
+  alert(`Stripe Checkout would open here for $${amount}`);
 
-  // Update balance in Firestore
+  // Increment balance locally in Firestore (simulate payment)
   await db.collection("users").doc(user.uid).update({
     balance: firebase.firestore.FieldValue.increment(amount)
   });

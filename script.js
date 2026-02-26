@@ -5,49 +5,52 @@ const firebaseConfig = {
   projectId: "vaultx-43488",
   storageBucket: "vaultx-43488.appspot.com",
   messagingSenderId: "103145535155",
-  appId: "1:103145535155:web:7afce57dac2c968c2122c6",
-  measurementId: "G-4WSJNZSQJ8"
+  appId: "1:103145535155:web:7afce57dac2c968c2122c6"
 };
 
-// Initialize Firebase once
+// Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-// SIGN UP
-async function signup() {
-  const auth = firebase.auth();
-  const db = firebase.firestore();
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+// Wait until page loads
+document.addEventListener("DOMContentLoaded", function() {
 
-  try {
-    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-    const user = userCredential.user;
+  const signupBtn = document.getElementById("signupBtn");
+  const loginBtn = document.getElementById("loginBtn");
 
-    await db.collection("users").doc(user.uid).set({
-      email: email,
-      balance: 0
-    });
+  signupBtn.addEventListener("click", async function() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    window.location.href = "dashboard.html";
-  } catch (error) {
-    alert(error.message);
-  }
-}
+    try {
+      const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+      const user = userCredential.user;
 
-// LOGIN
-async function login() {
-  const auth = firebase.auth();
+      await db.collection("users").doc(user.uid).set({
+        email: email,
+        balance: 0
+      });
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+      window.location.href = "dashboard.html";
+    } catch (error) {
+      alert(error.message);
+    }
+  });
 
-  try {
-    await auth.signInWithEmailAndPassword(email, password);
-    window.location.href = "dashboard.html";
-  } catch (error) {
-    alert(error.message);
-  }
-}
+  loginBtn.addEventListener("click", async function() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      window.location.href = "dashboard.html";
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+
+});

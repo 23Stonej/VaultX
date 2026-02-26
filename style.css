@@ -1,42 +1,76 @@
 body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #0f172a, #020617);
   color: white;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.05);
+  max-width: 900px;
+  margin: 60px auto;
   padding: 40px;
-  border-radius: 15px;
-  text-align: center;
-  backdrop-filter: blur(12px);
-  width: 300px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.balance {
+  font-size: 42px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 6px;
+  padding: 12px;
+  border-radius: 8px;
   border: none;
+  width: 200px;
+  margin-right: 10px;
 }
 
 button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 6px;
+  padding: 12px 20px;
+  border-radius: 8px;
   border: none;
-  background: #00f0ff;
-  font-weight: bold;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.deposit {
+  background: #22c55e;
+  color: white;
+}
+
+.withdraw {
+  background: #ef4444;
+  color: white;
+}
+
+.transfer {
+  background: #3b82f6;
+  color: white;
+}
+
+.logout {
+  background: #1e293b;
+  color: white;
 }
 
 button:hover {
-  opacity: 0.8;
+  transform: translateY(-2px);
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }

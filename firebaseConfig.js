@@ -8,9 +8,8 @@ const firebaseConfig = {
   measurementId: "G-4WSJNZSQJ8"
 };
 
-// Initialize Firebase
+// Initialize Firebase AFTER scripts load
 firebase.initializeApp(firebaseConfig);
 
-// Make globally accessible
 window.auth = firebase.auth();
 window.db = firebase.firestore();

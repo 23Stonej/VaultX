@@ -144,3 +144,40 @@ document.getElementById("transferBtn").addEventListener("click", async () => {
 function logout() {
   auth.signOut();
 }
+const auth = firebase.auth();
+const db = firebase.firestore();
+const depositAmount = document.getElementById("depositAmount");
+const depositBtn = document.getElementById("depositBtn");
+const balanceDisplay = document.getElementById("balanceDisplay");
+
+// Show balance on load
+auth.onAuthStateChanged(async user => {
+  if (user) {
+    const doc = await db.collection("users").doc(user.uid).get();
+    if (doc.exists) {
+      balanceDisplay.innerText = "Balance: $" + doc.data().balance;
+    }
+  } else {
+    window.location.href = "index.html"; // not logged in
+  }
+});
+
+// Deposit button
+depositBtn.addEventListener("click", async () => {
+  const user = auth.currentUser;
+  const amount = parseFloat(depositAmount.value);
+
+  if (!amount || amount <= 0) return alert("Enter a valid amount");
+
+  const userRef = db.collection("users").doc(user.uid);
+
+  await db.runTransaction(async (transaction) => {
+    const doc = await transaction.get(userRef);
+    const newBalance = (doc.data().balance || 0) + amount;
+    transaction.update(userRef, { balance: newBalance });
+    balanceDisplay.innerText = "Balance: $" + newBalance;
+  });
+
+  depositAmount.value = "";
+  alert(`Deposited $${amount} successfully!`);
+});

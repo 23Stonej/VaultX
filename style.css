@@ -1,8 +1,9 @@
+/* Base */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #0f0f1f, #05050a);
-  color: white;
+  background: #000;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,12 +14,18 @@ body {
   width: 90%;
   max-width: 400px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 30px;
+}
+
+/* Sections */
+.section {
+  padding: 20px;
+  background: rgba(0,0,0,0.85);
   border-radius: 15px;
+  box-shadow: 0 0 20px #f5d042;
   backdrop-filter: blur(10px);
 }
 
+/* Inputs */
 input {
   display: block;
   width: 100%;
@@ -26,11 +33,14 @@ input {
   margin: 10px 0;
   border-radius: 8px;
   border: none;
+  background: #111;
+  color: #fff;
 }
 
+/* Buttons */
 button {
-  background: #00f0ff;
-  color: black;
+  background: #f5d042;
+  color: #000;
   border: none;
   padding: 12px 20px;
   margin: 10px 0;
@@ -38,21 +48,45 @@ button {
   font-weight: bold;
   width: 100%;
   cursor: pointer;
+  box-shadow: 0 0 10px #f5d042;
 }
 
 button:hover {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
-#dashboardSection {
-  margin-top: 20px;
+/* Floating Bank Card */
+.card {
+  background: linear-gradient(135deg, #111, #222);
+  border: 2px solid #f5d042;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px #f5d042;
 }
 
+.card p {
+  margin: 5px 0;
+  font-weight: bold;
+  color: #f5d042;
+  font-size: 1.2em;
+}
+
+.logoutBtn {
+  background: #ff3b3b;
+  color: #fff;
+  box-shadow: 0 0 10px #ff3b3b;
+}
+
+/* Mobile */
 @media screen and (max-width: 500px) {
   .container {
-    padding: 20px;
+    width: 95%;
   }
   input, button {
     padding: 10px;
+  }
+  .card p {
+    font-size: 1em;
   }
 }

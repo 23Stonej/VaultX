@@ -1,5 +1,5 @@
 body {
-  background: radial-gradient(circle at top, #0f0f1f, #000);
+  background: linear-gradient(135deg, #0f172a, #020617);
   color: white;
   font-family: Arial, sans-serif;
   display: flex;
@@ -10,31 +10,31 @@ body {
 }
 
 .container {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   padding: 40px;
-  border-radius: 12px;
+  border-radius: 15px;
   text-align: center;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  width: 300px;
 }
 
 input {
-  display: block;
-  margin: 10px auto;
+  width: 100%;
   padding: 10px;
-  width: 250px;
+  margin: 10px 0;
   border-radius: 6px;
   border: none;
 }
 
 button {
-  margin: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
   border-radius: 6px;
   border: none;
-  background-color: #00f0ff;
+  background: #00f0ff;
   font-weight: bold;
-  color: black;
+  cursor: pointer;
 }
 
 button:hover {

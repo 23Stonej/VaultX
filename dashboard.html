@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VaultX Dashboard</title>
+  <title>VaultX</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-  <h1>VaultX</h1>
-  <p id="userEmail"></p>
 
-  <h2>Balance: $<span id="balance">0</span></h2>
+  <div class="card">
+    <h2>VaultX</h2>
+    <p id="userEmail"></p>
+    <div class="balance">$<span id="balance">0</span></div>
+  </div>
 
-  <input type="number" id="amount" placeholder="Enter amount">
+  <div class="card">
+    <input type="number" id="amount" placeholder="Amount">
+    <input type="email" id="transferEmail" placeholder="Transfer to (email)">
 
-  <button id="depositBtn">Deposit</button>
-  <button id="withdrawBtn">Withdraw</button>
-  <button onclick="logout()">Logout</button>
+    <br><br>
 
-  <h3>Transactions</h3>
-  <ul id="transactions"></ul>
+    <button class="deposit" id="depositBtn">Deposit</button>
+    <button class="withdraw" id="withdrawBtn">Withdraw</button>
+    <button class="transfer" id="transferBtn">Transfer</button>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="card">
+    <h3>Transactions</h3>
+    <ul id="transactions"></ul>
+  </div>
+
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>

@@ -8,20 +8,17 @@
 
 <div class="container">
   <h1>VaultX Dashboard</h1>
-  <p id="email"></p>
-  <p>Balance: $<span id="balance"></span></p>
+  <p id="userEmail"></p>
+  <h2>Balance: $<span id="balance">0</span></h2>
   <button onclick="logout()">Logout</button>
 </div>
 
-<!-- Firebase scripts (compat version) -->
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-firestore-compat.js"></script>
 
-<!-- Firebase config -->
 <script src="firebaseConfig.js"></script>
-
-<!-- Dashboard logic -->
 <script src="dashboard.js"></script>
 
 </body>

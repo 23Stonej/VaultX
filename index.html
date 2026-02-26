@@ -16,11 +16,58 @@
   <button id="loginBtn">Login</button>
 </div>
 
+<!-- ✅ Load Firebase FIRST -->
 <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-firestore-compat.js"></script>
 
-<script src="script.js"></script>
+<!-- ✅ THEN run your app code -->
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyD03N3_jRsw0l4a56WH6F75Zj0_zHipkIo",
+  authDomain: "vaultx-43488.firebaseapp.com",
+  projectId: "vaultx-43488",
+  storageBucket: "vaultx-43488.appspot.com",
+  messagingSenderId: "103145535155",
+  appId: "1:103145535155:web:7afce57dac2c968c2122c6"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+document.getElementById("signupBtn").addEventListener("click", async function() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+    const user = userCredential.user;
+
+    await db.collection("users").doc(user.uid).set({
+      email: email,
+      balance: 0
+    });
+
+    window.location.href = "dashboard.html";
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+document.getElementById("loginBtn").addEventListener("click", async function() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    await auth.signInWithEmailAndPassword(email, password);
+    window.location.href = "dashboard.html";
+  } catch (error) {
+    alert(error.message);
+  }
+});
+</script>
 
 </body>
 </html>

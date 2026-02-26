@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .container {
@@ -23,6 +23,7 @@ body {
   border-radius: 15px;
   box-shadow: 0 0 20px #f5d042;
   backdrop-filter: blur(10px);
+  margin-bottom: 20px;
 }
 
 /* Inputs */
@@ -35,6 +36,7 @@ input {
   border: none;
   background: #111;
   color: #fff;
+  font-size: 1em;
 }
 
 /* Buttons */
@@ -78,6 +80,13 @@ button:hover {
   box-shadow: 0 0 10px #ff3b3b;
 }
 
+/* Deposit container to prevent overlap */
+.deposit-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 /* Mobile */
 @media screen and (max-width: 500px) {
   .container {
@@ -85,8 +94,23 @@ button:hover {
   }
   input, button {
     padding: 10px;
+    font-size: 0.9em;
   }
   .card p {
     font-size: 1em;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 501px) {
+  .deposit-container {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .deposit-container input {
+    flex: 1;
+  }
+  .deposit-container button {
+    flex: 1;
   }
 }

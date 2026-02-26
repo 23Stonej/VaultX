@@ -1,21 +1,21 @@
-// Check auth state
-auth.onAuthStateChanged(async user => {
+window.auth.onAuthStateChanged(async function(user) {
   if (user) {
-    document.getElementById("email").innerText = `Email: ${user.email}`;
+    document.getElementById("userEmail").innerText = "Email: " + user.email;
 
-    const doc = await db.collection("users").doc(user.uid).get();
+    const doc = await window.db.collection("users").doc(user.uid).get();
+
     if (doc.exists) {
       document.getElementById("balance").innerText = doc.data().balance;
     } else {
-      document.getElementById("balance").innerText = 0;
+      document.getElementById("balance").innerText = "0";
     }
+
   } else {
     window.location.href = "index.html";
   }
 });
 
-// Logout function
 function logout() {
-  auth.signOut();
+  window.auth.signOut();
   window.location.href = "index.html";
 }

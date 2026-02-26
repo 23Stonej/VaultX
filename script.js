@@ -67,24 +67,59 @@ async function showDashboard(uid) {
   cardEmail.innerText = data.email;
 }
 
-// Deposit with Stripe Checkout
+// Deposit with Stripe Checkout (client-only test mode)
 depositBtn.addEventListener("click", async () => {
   const amount = parseFloat(depositAmount.value);
-  if (!amount || amount <= 0) return alert("Enter valid amount");
+  if (!amount || amount <= 0) return alert("Enter a valid amount");
 
   const user = auth.currentUser;
   if (!user) return alert("Not logged in");
 
-  // Simple Stripe Checkout (test mode)
-  // For real integration, create a Checkout session on your backend
-  alert(`Stripe Checkout would open here for $${amount}`);
+  // Create a client-only Checkout session (Stripe test)
+  // ⚡ Stripe requires prices or products; for demo we simulate $ amount
+  const sessionData = {
+    line_items: [{
+      price_data: {
+        currency: 'usd',
+        product_data: { name: 'VaultX Deposit' },
+        unit_amount: amount * 100
+      },
+      quantity: 1
+    }],
+    mode: 'payment',
+    success_url: window.location.href + '?success=true&amount=' + amount,
+    cancel_url: window.location.href + '?canceled=true'
+  };
 
-  // Increment balance locally in Firestore (simulate payment)
-  await db.collection("users").doc(user.uid).update({
-    balance: firebase.firestore.FieldValue.increment(amount)
-  });
+  try {
+    // Open Stripe Checkout directly (client-only)
+    const { error } = await stripe.redirectToCheckout(sessionData);
+    if (error) {
+      alert(error.message);
+    }
+  } catch (err) {
+    alert(err.message);
+  }
+});
 
-  const doc = await db.collection("users").doc(user.uid).get();
-  cardBalance.innerText = `$${doc.data().balance}`;
-  depositAmount.value = "";
+// Listen for success URL and increment balance
+window.addEventListener("load", async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const success = urlParams.get('success');
+  const amount = parseFloat(urlParams.get('amount'));
+
+  if (success && amount > 0 && auth.currentUser) {
+    // Increment Firestore balance
+    const userRef = db.collection("users").doc(auth.currentUser.uid);
+    await userRef.update({
+      balance: firebase.firestore.FieldValue.increment(amount)
+    });
+
+    const doc = await userRef.get();
+    cardBalance.innerText = `$${doc.data().balance}`;
+
+    // Clean URL to avoid duplicate increments
+    window.history.replaceState({}, document.title, window.location.pathname);
+    alert(`Deposit of $${amount} successful!`);
+  }
 });

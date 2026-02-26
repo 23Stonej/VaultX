@@ -7,16 +7,24 @@
 <body>
 
 <div class="container">
-  <h1>VaultX Dashboard</h1>
+  <h1>VaultX</h1>
   <p id="userEmail"></p>
+
   <h2>Balance: $<span id="balance">0</span></h2>
+
+  <input type="number" id="amount" placeholder="Enter amount">
+
+  <button id="depositBtn">Deposit</button>
+  <button id="withdrawBtn">Withdraw</button>
   <button onclick="logout()">Logout</button>
+
+  <h3>Transactions</h3>
+  <ul id="transactions"></ul>
 </div>
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.25.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script src="dashboard.js"></script>
 
